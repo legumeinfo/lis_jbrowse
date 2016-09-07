@@ -15,7 +15,7 @@ function lis_gbrowse_menu() {
   $items = array();
   $items['genomes/gbrowse/%'] = array( //this creates a URL with wildcard for the species specific gbrowse path
     'title' => 'GBrowse', //page title
-    'description' => 'Gbrowse at LIS.',
+    'description' => 'GBrowse at LIS.',
     'page callback' => lis_gbrowse_page_callback, //this fn is called when page accessed. For form, use drupal_get_form
     //'page arguments' => array('grin_acc_query_form'), //form name here; no need if page callback fn() doesn't need it.
     'page arguments' => array(2), // the args for page callback function '2' is the 3rd component of path (0 based index);
@@ -43,8 +43,8 @@ function lis_gbrowse_theme() {
 /**
  * Implements page callback.
  */
-
 function lis_gbrowse_page_callback($third_path_component) {
+  
   //echo '---'.$bb.'---';
   //$path = $_GET['q'];
   //echo 'path: '.$path;
