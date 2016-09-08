@@ -1,1 +1,1 @@
-# lis_gbrowse
+# lis_jbrowse

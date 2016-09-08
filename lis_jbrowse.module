@@ -1,0 +1,67 @@
+<?php
+// $Id$
+
+// lis_jbrowse
+
+// Sudhansu Dash
+// 2016 Aug 22
+
+
+/**
+ * Implements hook_menu().
+ */
+
+function lis_jbrowse_menu() {
+  $items = array();
+  $items["genomes/jbrowse"] = array( //No need of wildcard unlike gbrowse//this creates a URL with wildcard for the species specific jbrowse path
+    'title' => 'JBrowse', //page title
+    'description' => 'JBrowse at LIS.',
+    'page callback' => lis_jbrowse_page_callback, //this fn is called when page accessed. For form, use drupal_get_form
+    //'page arguments' => array('grin_acc_query_form'), //form name here; no need if page callback fn() doesn't need it.
+    'page arguments' => array(2), // the args for page callback function '2' is the 3rd component of path (0 based index); 0 is genomes, 1 is jbrowse2, 2 for %;
+    'access callback' => TRUE,
+  );
+  
+  return $items;
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+
+
+function lis_jbrowse_theme() {
+  return array(
+    'lis_jbrowse_page_template' => array(  // this array name to be used in theme() fn.
+    'template' => 'lis_jbrowse_page',  //template file lis_jbrowse_page.tpl.php
+    //'variables' => array(),
+    ),  //array page_template
+  );  // array return
+}    
+
+/**
+ * Implements page callback.
+ */
+function lis_jbrowse_page_callback($third_path_component) {
+  
+    ##Query params for jbrowse utility
+    $qry_params = $_SERVER['QUERY_STRING']; // Avoiding $_GET['query'] because '&' not interpreted correctly
+            //$qry_params = $_GET['query'];   # 'q' fails because drupal uses 'q' internally
+            $url_source = "/jbrowse?".$qry_params;
+            //drupal_set_message ("Message:".$url_source." "." qry-params: ". $qry_params);
+   
+  // array name in hook_theme() that specifies page template file.
+  return theme ('lis_jbrowse_page_template', array('url_source' => $url_source)); 
+}
+
+
+
+
+//  SCRATCH PAD
+//=============
+
+/*
+ 
+
+*/

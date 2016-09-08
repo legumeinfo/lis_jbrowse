@@ -1,0 +1,10 @@
+name = lis_jbrowse
+description = Container page for all LIS JBrowse URLs in an iframe.
+core = 7.x
+files[] = lis_jbrowse.module
+
+package = LIS
+;dependencies[] = 
+;dependencies[] = 
+;files[] = 
+;configure = 
